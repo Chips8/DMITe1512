@@ -1,0 +1,39 @@
+
+using UnityEngine;
+
+public class CubeController : MonoBehaviour {
+    public float delta = 1.5f;  // Amount to move left and right from the start point
+    public float speed = 2.0f;
+    private Vector3 startPos;
+    // Use this for initialization
+    void Start () {
+        startPos = transform.position;
+    }
+	
+	// Update is called once per frame
+	void Update ()
+    {
+        Vector3 amountToMove = new Vector3(0.1f, 0.1f);
+        //double has double significant digits, does strong type checking
+        //significant digits do matter if you are landing a space ship on Mars
+        //Yes we know this is a float, so we put f, to let the compiler know we know it is a float, we could cast it using (float)0.1
+
+        //Camel Case for Variables is standard
+        //Class name or a struct name has a capital letter(Title Case)
+        //Can pass in 3 parameters when we click on the arrow to look; can put none, no z axis, all 3 axises
+        //Don't worry what a struct right now, just think of a class
+        //inherited it when we typed using UnityEngine
+        //Variable that has a dot x, dot y, and dot z that's it
+        // transform.Translate(amountToMove);
+        // On the transform to this script that this is attached move it 0.1 on the x and y axis.
+        //How far we want to move this Vector3 in this translate
+        //class inherits from unity engine
+        // show where script is attached
+        Vector3 amountToRotate = new Vector3(0, 0.2f);
+        transform.Rotate(amountToRotate);
+         Vector3 v = startPos;
+         v.x += delta * Mathf.Sin (Time.time * speed);
+         transform.position = v;
+		
+	}
+}
