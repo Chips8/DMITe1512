@@ -1,0 +1,52 @@
+2D collision
+accessing tranform method
+
+game exists in 3D but you're only showing a 2D.
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CubeController : MonoBehaviour
+{
+    //A velocity requires direction and magnitude.
+    float xDirection = 1, xMagnitude = 0.1f;
+    float leftSide = -4.2f, rightSide = 4.2f;
+    float xSpinDirection = -1, xSpinMagnitude = 0.1f;
+
+	// Use this for initialization
+	
+	
+	// Update is called once per frame
+	void Update () 
+	{
+        float xVelocity = xDirection * xMagnitude;
+
+	    Vector3 amountToMove = new Vector3(xVelocity, 0, 0);
+
+        //Called local space vs world space
+        //Move on world's space not local space
+        //Vector is a struct or a class, magical vector in 3 Dimensions
+        transform.Translate(amountToMove, Space.World);
+        //default is Space.Self
+	    //magnitude and direction in this frame
+        //if he transform's x position is less than leftSide, change direction
+		if(transform.position.x < leftSide)
+        {
+            xDirection = 1;
+        }
+        if(transform.position.x > rightSide)
+        {
+            xDirection = -1;
+        }
+
+        //To rotate a 2D object, we need it to rotate on z- axis
+
+        transform.Rotate(new Vector3(0, 0, xSpinDirection * xSpinMagnitude));
+        
+        //Doesn't care how long the name of the variable is, it's very important to instructor
+    }
+
+    
+}
+
